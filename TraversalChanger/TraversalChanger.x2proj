@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>60ca5aae-ab3b-4e61-9210-ee9c363f3227</Guid>
+    <Name>TraversalChanger</Name>
+    <Description>What happens when you see an idea and run so far with it it becomes sentient ?
+
+This. This is what happens</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>TraversalChanger</AssemblyName>
+    <RootNamespace>TraversalChanger</RootNamespace>
+    <ProjectGuid>{29b8396f-ba93-420e-b743-6bc81d49ebf3}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
+    <ScriptsDir>$(SolutionRoot).scripts\\</ScriptsDir>
+    <BuildCommonRoot>$(ScriptsDir)X2ModBuildCommon\</BuildCommonRoot>
+  </PropertyGroup>
+  <Import Project="$(BuildCommonRoot)XCOM2.targets" />
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Config\Base\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Src\" />
+    <Folder Include="Content\" />
+    <Folder Include="ContentForCook\" />
+    <Folder Include="Src\TraversalChanger\" />
+    <Folder Include="Src\TraversalChanger\Classes\" />
+    <Folder Include="Src\WallClimbOverride\" />
+    <Folder Include="Src\WallClimbOverride\Classes\" />
+    <Folder Include="Config\ArmourUpgrade\" />
+    <Folder Include="Config\Covert Infiltration\" />
+    <Folder Include="Config\Proving Ground Overhaul\" />
+    <Content Include="ReadMe.txt" />
+    <Content Include="ModPreview.jpg" />
+    <Content Include="ContentOptions.json" />
+    <Content Include="Config\Base\XComEditor.ini" />
+    <Content Include="Config\Base\XComEngine.ini" />
+    <Content Include="Config\Base\XComGame.ini" />
+    <Content Include="Config\XComTemplateCreator.ini" />
+    <Content Include="Config\XComTemplateEditor.ini" />
+    <Content Include="Localization\XComGame.int" />
+    <Content Include="Localization\TraversalChanger.int" />
+    <Content Include="Src\extra_globals.uci" />
+    <Content Include="Src\TraversalChanger\Classes\X2DLCInfo_TraversalChanger.uc" />
+    <Content Include="Src\TraversalChanger\Classes\Help.uc" />
+    <Content Include="Src\TraversalChanger\Classes\ConfigEngine.uc" />
+    <Content Include="Config\XComTraversalChanger.ini" />
+    <Content Include="Src\TraversalChanger\Classes\X2Ability_TraversalChanger.uc" />
+    <Content Include="Src\WallClimbOverride\Classes\X2Action_MoveClimbWall_Override.uc" />
+    <Content Include="Src\TraversalChanger\Classes\X2Item_TraversalChanger.uc" />
+    <Content Include="Config\CharacterGroups.txt" />
+    <Content Include="Config\CharacterNames.txt" />
+    <Content Include="Config\XComPromotionUIMod.ini" />
+    <Content Include="Config\XComTraversalChanger_Ability.ini" />
+    <Content Include="Config\XComTraversalChanger_Adding.ini" />
+    <Content Include="Config\XComTraversalChanger_Items.ini" />
+    <Content Include="Config\XComTraversalChange_Internal.ini" />
+    <Content Include="Config\ArmourUpgrade\XComArmorUpgrades.ini" />
+    <Content Include="Config\Covert Infiltration\XComInfiltration.ini" />
+    <Content Include="Config\Covert Infiltration\XComStrategyTuning.ini" />
+    <Content Include="Config\Proving Ground Overhaul\XComPGOverhaulExperimentalItems.ini" />
+    <Content Include="Config\AbilityIcons.txt" />
+    <Content Include="Config\ItemIcons.txt" />
+  </ItemGroup>
+</Project>

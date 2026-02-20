@@ -1,0 +1,37 @@
+// ADVENT
+AdventCaptain
+AdventMEC
+AdventPsiWitch
+AdventShieldBearer
+AdventStunLancer
+AdventTrooper
+AdventTurret
+AdventCounterOp
+AdventPurifier
+AdventPriest
+
+// ALIENS
+Andromedon
+Archon
+Berserker
+Chryssalid
+Cyberus
+Faceless
+Gatekeeper
+Muton
+Sectoid
+Viper
+Shadowbind
+Chryssalid
+Spectre
+
+// CHOSEN
+ChosenAssassin
+ChosenWarlock
+ChosenSniper
+
+// OTHER
+TheLost
+Civilian
+
+
