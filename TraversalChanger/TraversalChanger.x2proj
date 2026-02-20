@@ -33,14 +33,12 @@ This. This is what happens</Description>
     <Folder Include="Config\Proving Ground Overhaul\" />
     <Content Include="ReadMe.txt" />
     <Content Include="ModPreview.jpg" />
-    <Content Include="ContentOptions.json" />
     <Content Include="Config\Base\XComEditor.ini" />
     <Content Include="Config\Base\XComEngine.ini" />
     <Content Include="Config\Base\XComGame.ini" />
     <Content Include="Config\XComTemplateCreator.ini" />
     <Content Include="Config\XComTemplateEditor.ini" />
     <Content Include="Localization\XComGame.int" />
-    <Content Include="Localization\TraversalChanger.int" />
     <Content Include="Src\extra_globals.uci" />
     <Content Include="Src\TraversalChanger\Classes\X2DLCInfo_TraversalChanger.uc" />
     <Content Include="Src\TraversalChanger\Classes\Help.uc" />
@@ -62,5 +60,6 @@ This. This is what happens</Description>
     <Content Include="Config\Proving Ground Overhaul\XComPGOverhaulExperimentalItems.ini" />
     <Content Include="Config\AbilityIcons.txt" />
     <Content Include="Config\ItemIcons.txt" />
+    <Content Include="PublishedFileId.ID" />
   </ItemGroup>
 </Project>
