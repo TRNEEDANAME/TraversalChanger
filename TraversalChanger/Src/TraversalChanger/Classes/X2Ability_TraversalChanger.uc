@@ -185,45 +185,45 @@ static function ETraversalType MapTraversalType(name TraversalName)
 {
 	switch (TraversalName)
 	{
-		case 'eTraversal_Normal':
+		case 'Traversal_Normal':
 			return eTraversal_Normal;
-		case 'eTraversal_ClimbOver':
+		case 'Traversal_ClimbOver':
 			return eTraversal_ClimbOver;
-		case 'eTraversal_ClimbOnto':
+		case 'Traversal_ClimbOnto':
 			return eTraversal_ClimbOnto;
-		case 'eTraversal_ClimbLadder':
+		case 'Traversal_ClimbLadder':
 			return eTraversal_ClimbLadder;
-		case 'eTraversal_DropDown':
+		case 'Traversal_DropDown':
 			return eTraversal_DropDown;
-		case 'eTraversal_Grapple':
+		case 'Traversal_Grapple':
 			return eTraversal_Grapple;
-		case 'eTraversal_Landing':
+		case 'Traversal_Landing':
 			return eTraversal_Landing;
-		case 'eTraversal_BreakWindow':
+		case 'Traversal_BreakWindow':
 			return eTraversal_BreakWindow;
-		case 'eTraversal_KickDoor':
+		case 'Traversal_KickDoor':
 			return eTraversal_KickDoor;
-		case 'eTraversal_WallClimb':
+		case 'Traversal_WallClimb':
 			return eTraversal_WallClimb;
-		case 'eTraversal_JumpUp':
+		case 'Traversal_JumpUp':
 			return eTraversal_JumpUp;
-		case 'eTraversal_Ramp':
+		case 'Traversal_Ramp':
 			return eTraversal_Ramp;
-		case 'eTraversal_BreakWall':
+		case 'Traversal_BreakWall':
 			return eTraversal_BreakWall;
-		case 'eTraversal_Phasing':
+		case 'Traversal_Phasing':
 			return eTraversal_Phasing;
-		case 'eTraversal_Launch':
+		case 'Traversal_Launch':
 			return eTraversal_Launch;
-		case 'eTraversal_Flying':
+		case 'Traversal_Flying':
 			return eTraversal_Flying;
-		case 'eTraversal_Land':
+		case 'Traversal_Land':
 			return eTraversal_Land;
-		case 'eTraversal_Teleport':
+		case 'Traversal_Teleport':
 			return eTraversal_Teleport;
-		case 'eTraversal_Unreachable':
+		case 'Traversal_Unreachable':
 			return eTraversal_Unreachable;
-		case 'eTraversal_None':
+		case 'Traversal_None':
 		default:
 			return eTraversal_None;
 	}
