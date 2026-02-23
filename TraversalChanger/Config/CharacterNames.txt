@@ -30,7 +30,6 @@ AdvPriestM1
 AdvPriestM2
 AdvPriestM3
 
-
 // ALIENS
 Archon
 Berserker
@@ -45,16 +44,26 @@ PrototypeSectopod
 Viper
 SpectreM1
 SpectreM2
+ShadowbindUnit
+ShadowbindUnitM2
 Andromedon
 AndromedonRobot
-
-
 
 StrategyCentral
 Scientist
 HeadScientist
 Engineer
 HeadEngineer
+
+CivilianMilitia
+CivilianMilitiaM2
+CivilianMilitiaM3
+VolunteerArmyMilitia
+VolunteerArmyMilitiaM2
+VolunteerArmyMilitiaM3
+ReaperSoldier
+SkirmisherSoldier
+TemplarSoldier
 
 // THE LOST
 TheLostHP2
@@ -123,8 +132,6 @@ ChosenSniperM2
 ChosenSniperM3
 ChosenSniperM4
 
-ShadowbindUnit
-ShadowbindUnitM2
 SpectralStunLancerM1
 SpectralStunLancerM3
 SpectralStunLancerM2
