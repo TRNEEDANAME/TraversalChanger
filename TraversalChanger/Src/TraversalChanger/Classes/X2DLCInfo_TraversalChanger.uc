@@ -66,6 +66,7 @@ static function PatchEquipmentTemplates(X2DataTemplate DataTemplate)
 	local X2EquipmentTemplate 	Template;
 	local ItemData				ItemEntry;
 	local bool					bIsTargetItem;
+	local name					AbilityToAdd;
 
 	Template = X2EquipmentTemplate(DataTemplate);
 	if (Template == none)
@@ -78,6 +79,7 @@ static function PatchEquipmentTemplates(X2DataTemplate DataTemplate)
 		if (ItemEntry.ItemName == Template.DataName)
 		{
 			bIsTargetItem = true;
+			AbilityToAdd = ItemEntry.AbilityName;
 			break;
 		}
 	}
@@ -87,9 +89,8 @@ static function PatchEquipmentTemplates(X2DataTemplate DataTemplate)
 		return;
 	}
 
-	`LOG("Patching equipment template with configured Traversal Changer abilities: " @ Template.DataName, default.bLog, 'Traversal Changer MOD ---');
-	AddConfiguredPassiveAbilities(Template.Abilities, Template.DataName);
-	AddConfiguredActiveAbilities(Template.Abilities, Template.DataName);
+	`LOG("Patching equipment template with configured Traversal Changer abilities: " @ Template.DataName, default.bLog, 'TraversalChanger');
+	AddAbility(Template.Abilities, AbilityToAdd, Template.DataName);
 }
 
 static function PatchArmourTemplates(X2DataTemplate DataTemplate)
@@ -97,6 +98,7 @@ static function PatchArmourTemplates(X2DataTemplate DataTemplate)
 	local X2ArmorTemplate		ArmourTemplate;
 	local ArmourData			ArmourEntry;
 	local bool					bIsTargetArmour;
+	local name					AbilityToAdd;
 
 	ArmourTemplate = X2ArmorTemplate(DataTemplate);
 	if (ArmourTemplate == none)
@@ -109,6 +111,7 @@ static function PatchArmourTemplates(X2DataTemplate DataTemplate)
 		if (ArmourEntry.ArmourName == ArmourTemplate.DataName)
 		{
 			bIsTargetArmour = true;
+			AbilityToAdd = ArmourEntry.AbilityName;
 			break;
 		}
 	}
@@ -118,9 +121,8 @@ static function PatchArmourTemplates(X2DataTemplate DataTemplate)
 		return;
 	}
 
-	`LOG("Patching armour template with configured Traversal Changer abilities: " @ ArmourTemplate.DataName, default.bLog, 'Traversal Changer MOD ---');
-	AddConfiguredPassiveAbilities(ArmourTemplate.Abilities, ArmourTemplate.DataName);
-	AddConfiguredActiveAbilities(ArmourTemplate.Abilities, ArmourTemplate.DataName);
+	`LOG("Patching armour template with configured Traversal Changer abilities: " @ ArmourTemplate.DataName, default.bLog, 'TraversalChanger');
+	AddAbility(ArmourTemplate.Abilities, AbilityToAdd, ArmourTemplate.DataName);
 }
 
 static function PatchCharacterTemplates(X2DataTemplate DataTemplate)
@@ -128,6 +130,7 @@ static function PatchCharacterTemplates(X2DataTemplate DataTemplate)
 	local X2CharacterTemplate	CharacterTemplate;
 	local CharacterData			CharacterEntry;
 	local bool					bIsTargetUnit;
+	local name					AbilityToAdd;
 
 	CharacterTemplate = X2CharacterTemplate(DataTemplate);
 	if (CharacterTemplate == none)
@@ -140,6 +143,7 @@ static function PatchCharacterTemplates(X2DataTemplate DataTemplate)
 		if (CharacterTemplate.DataName == CharacterEntry.CharacterName)
 		{
 			bIsTargetUnit = true;
+			AbilityToAdd = CharacterEntry.AbilityName;
 			break;
 		}
 	}
@@ -149,8 +153,8 @@ static function PatchCharacterTemplates(X2DataTemplate DataTemplate)
 		return;
 	}
 
-	`LOG("Patching character template with configured Traversal Changer passive abilities: " @ CharacterTemplate.DataName, default.bLog, 'Traversal Changer MOD ---');
-	AddConfiguredPassiveAbilities(CharacterTemplate.Abilities, CharacterTemplate.DataName);
+	`LOG("Patching character template with configured Traversal Changer passive abilities: " @ CharacterTemplate.DataName, default.bLog, 'TraversalChanger');
+	AddAbility(CharacterTemplate.Abilities, AbilityToAdd, CharacterTemplate.DataName);
 }
 
 
@@ -159,6 +163,7 @@ static function PatchCharacterGroupsTemplates(X2DataTemplate DataTemplate)
 	local X2CharacterTemplate	CharacterTemplate;
 	local CharacterGroupData	CharacterGroupEntry;
 	local bool					bIsTargetUnit;
+	local name					AbilityToAdd;
 
 	CharacterTemplate = X2CharacterTemplate(DataTemplate);
 	if (CharacterTemplate == none)
@@ -171,6 +176,7 @@ static function PatchCharacterGroupsTemplates(X2DataTemplate DataTemplate)
 		if (CharacterTemplate.CharacterGroupName == CharacterGroupEntry.CharacterGroupName)
 		{
 			bIsTargetUnit = true;
+			AbilityToAdd = CharacterGroupEntry.AbilityName;
 			break;
 		}
 	}
@@ -180,17 +186,16 @@ static function PatchCharacterGroupsTemplates(X2DataTemplate DataTemplate)
 		return;
 	}
 
-	`LOG("Patching character group template with configured Traversal Changer passive abilities: " @ CharacterTemplate.DataName, default.bLog, 'Traversal Changer MOD ---');
-	AddConfiguredPassiveAbilities(CharacterTemplate.Abilities, CharacterTemplate.DataName);
+	`LOG("Patching character group template with configured Traversal Changer passive abilities: " @ CharacterTemplate.DataName, default.bLog, 'TraversalChanger');
+	AddAbility(CharacterTemplate.Abilities, AbilityToAdd, CharacterTemplate.DataName);
 }
 
 static function PatchSoldierClassTemplates(X2DataTemplate DataTemplate)
 {
 	local X2SoldierClassTemplate	SoldierClassTemplate;
 	local SoldierClassAbilitySlot	NewSlot;
-	local array<name>				ActiveAbilityNames;
 	local ClassData				ClassEntry;
-	local name					AbilityName;
+	local name					AbilityToAdd;
 	local bool					bIsTargetClass;
 	local int					SlotIndex;
 	local int					RankIndex;
@@ -226,56 +231,40 @@ static function PatchSoldierClassTemplates(X2DataTemplate DataTemplate)
 		RankIndex = 0;
 	}
 
-	ActiveAbilityNames = class'X2Ability_TraversalChanger'.static.GetActiveAbilityNames();
-	foreach ActiveAbilityNames(AbilityName)
+	AbilityToAdd = ClassEntry.AbilityName;
+	if (AbilityToAdd == '')
 	{
-		for (SlotIndex = 0; SlotIndex < SoldierClassTemplate.SoldierRanks[RankIndex].AbilitySlots.Length; ++SlotIndex)
-		{
-			if (SoldierClassTemplate.SoldierRanks[RankIndex].AbilitySlots[SlotIndex].AbilityType.AbilityName == AbilityName)
-			{
-				`LOG("Traversal Changer ability already exists in class: " @ SoldierClassTemplate.DisplayName @ " ability: " @ AbilityName, default.bLog, 'Traversal Changer MOD ---');
-				break;
-			}
-		}
+		return;
+	}
 
-		if (SlotIndex == SoldierClassTemplate.SoldierRanks[RankIndex].AbilitySlots.Length)
+	for (SlotIndex = 0; SlotIndex < SoldierClassTemplate.SoldierRanks[RankIndex].AbilitySlots.Length; ++SlotIndex)
+	{
+		if (SoldierClassTemplate.SoldierRanks[RankIndex].AbilitySlots[SlotIndex].AbilityType.AbilityName == AbilityToAdd)
 		{
-			NewSlot.AbilityType.AbilityName = AbilityName;
-			SoldierClassTemplate.SoldierRanks[RankIndex].AbilitySlots.AddItem(NewSlot);
-			`LOG("Added ability " @ AbilityName @ " to class: " @ SoldierClassTemplate.DisplayName, default.bLog, 'Traversal Changer MOD ---');
+			`LOG("Traversal Changer ability already exists in class: " @ SoldierClassTemplate.DisplayName @ " ability: " @ AbilityToAdd, default.bLog, 'TraversalChanger');
+			break;
 		}
+	}
+
+	if (SlotIndex == SoldierClassTemplate.SoldierRanks[RankIndex].AbilitySlots.Length)
+	{
+		NewSlot.AbilityType.AbilityName = AbilityToAdd;
+		SoldierClassTemplate.SoldierRanks[RankIndex].AbilitySlots.AddItem(NewSlot);
+		`LOG("Added ability " @ AbilityToAdd @ " to class: " @ SoldierClassTemplate.DisplayName, default.bLog, 'TraversalChanger');
 	}
 }
 
-static private function AddConfiguredPassiveAbilities(out array<name> TargetAbilities, name TemplateName)
+static private function AddAbility(out array<name> TargetAbilities, name AbilityName, name TemplateName)
 {
-	local array<name>	PassiveAbilityNames;
-	local name			AbilityName;
-
-	PassiveAbilityNames = class'X2Ability_TraversalChanger'.static.GetPassiveAbilityNames();
-	foreach PassiveAbilityNames(AbilityName)
+	if (AbilityName == '')
 	{
-		if (TargetAbilities.Find(AbilityName) == INDEX_NONE)
-		{
-			TargetAbilities.AddItem(AbilityName);
-			`LOG("Added passive ability " @ AbilityName @ " to template: " @ TemplateName, default.bLog, 'Traversal Changer MOD ---');
-		}
+		return;
 	}
-}
 
-static private function AddConfiguredActiveAbilities(out array<name> TargetAbilities, name TemplateName)
-{
-	local array<name>	ActiveAbilityNames;
-	local name			AbilityName;
-
-	ActiveAbilityNames = class'X2Ability_TraversalChanger'.static.GetActiveAbilityNames();
-	foreach ActiveAbilityNames(AbilityName)
+	if (TargetAbilities.Find(AbilityName) == INDEX_NONE)
 	{
-		if (TargetAbilities.Find(AbilityName) == INDEX_NONE)
-		{
-			TargetAbilities.AddItem(AbilityName);
-			`LOG("Added active ability " @ AbilityName @ " to template: " @ TemplateName, default.bLog, 'Traversal Changer MOD ---');
-		}
+		TargetAbilities.AddItem(AbilityName);
+		`LOG("Added ability " @ AbilityName @ " to template: " @ TemplateName, default.bLog, 'TraversalChanger');
 	}
 }
 
