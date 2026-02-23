@@ -28,6 +28,7 @@ struct native ActiveAbilityData {
     var string IconPath;
     var name EffectName;
 	var name Change;
+	var bool RemoveTraversal;
 	var string Description;
 	var int NumTurns;
 	var int AP_Cost;
@@ -39,7 +40,7 @@ struct native ActiveAbilityData {
 	structdefaultproperties
 	{
 		IconPath = "UILibrary_PerkIcons.UIPerk_absorption_fields";
-		DisplayIcon = true;
+		RemoveTraversal = false;
 		NumTurns = 2;
 		AP_Cost = 1;
 		IsFree = false;
@@ -159,7 +160,7 @@ static function X2AbilityTemplate TR_TraversalChanger_Active(ActiveAbilityData A
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 
 	TraversalEffect = new class'X2Effect_PersistentTraversalChange';
-	TraversalEffect.AddTraversalChange(MapTraversalType(ActiveAbilityConfig.Change), true);
+	TraversalEffect.AddTraversalChange(MapTraversalType(ActiveAbilityConfig.Change), !ActiveAbilityConfig.RemoveTraversal);
 	TraversalEffect.EffectName = ActiveAbilityConfig.EffectName;
 	TraversalEffect.DuplicateResponse = eDupe_Ignore;
 	TraversalEffect.BuildPersistentEffect(ActiveAbilityConfig.NumTurns, false, true, false, eGameRule_PlayerTurnBegin);
