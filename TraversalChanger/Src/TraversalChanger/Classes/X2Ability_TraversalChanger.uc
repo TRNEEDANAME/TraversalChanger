@@ -10,6 +10,7 @@ struct native PassiveAbilityData {
     var name AbilityTemplateName;
 	var string AbilityName;
     var string IconPath;
+	var bool DisplayIcon;
     var name EffectName;
 	var name Change;
 	var bool RemoveTraversal;
@@ -38,8 +39,9 @@ struct native ActiveAbilityData {
 	structdefaultproperties
 	{
 		IconPath = "UILibrary_PerkIcons.UIPerk_absorption_fields";
-		 NumTurns = 2;
-		 AP_Cost = 1;
+		DisplayIcon = true;
+		NumTurns = 2;
+		AP_Cost = 1;
 		IsFree = false;
 		ConsumeAllPoints = false;
 		Cooldown = 1;
@@ -77,12 +79,12 @@ static function X2AbilityTemplate TR_TraversalChanger_Passive(PassiveAbilityData
 	Template = CreatePassiveAbility(PassiveAbilityConfig.AbilityTemplateName, "img:///" $ PassiveAbilityConfig.IconPath);
 
 	TraversalEffect = new class'X2Effect_PersistentTraversalChange';
-	TraversalEffect.AddTraversalChange(MapTraversalType(PassiveAbilityConfig.Change), PassiveAbilityConfig.RemoveTraversal);
+	TraversalEffect.AddTraversalChange(MapTraversalType(PassiveAbilityConfig.Change), !PassiveAbilityConfig.RemoveTraversal);
 	TraversalEffect.EffectName = PassiveAbilityConfig.EffectName;
 	TraversalEffect.DuplicateResponse = eDupe_Ignore;
 	TraversalEffect.BuildPersistentEffect(5, true, true, false, eGameRule_PlayerTurnBegin);
 	if (PassiveAbilityConfig.AbilityName == "") {
-		TraversalEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
+		TraversalEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,PassiveAbilityConfig.DisplayIcon,,Template.AbilitySourceName);
 	}
 	else {
 		TraversalEffect.SetDisplayInfo(ePerkBuff_Passive, PassiveAbilityConfig.AbilityName, PassiveAbilityConfig.Description, Template.IconImage,,,Template.AbilitySourceName);
@@ -261,7 +263,7 @@ static function array<name> GetActiveAbilityNames()
 	return AbilityNames;
 }
 
-static function X2AbilityTemplate CreatePassiveAbility(name AbilityName, optional string IconString, optional name IconEffectName = AbilityName, optional bool bDisplayIcon = true)
+static function X2AbilityTemplate CreatePassiveAbility(name AbilityName, optional string IconString, optional name IconEffectName = AbilityName, optional bool bDisplayIcon = false)
 {
 	
 	local X2AbilityTemplate					Template;
